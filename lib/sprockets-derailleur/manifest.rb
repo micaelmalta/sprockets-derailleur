@@ -10,7 +10,7 @@ module Sprockets
       paths_with_errors = {}
 
       time = Benchmark.measure do
-        paths = environment.each_logical_path(*args).to_a +
+        paths = Rails.application.assets.each_logical_path(*args).to_a +
           args.flatten.select { |fn| Pathname.new(fn).absolute? if fn.is_a?(String)}
 
         # Skip all files without extensions, see
